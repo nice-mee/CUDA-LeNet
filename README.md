@@ -1,5 +1,5 @@
-# ECE408-CUDA-LeNet
-Course final project for ECE 408 FA23. For original project description, see [_README.md](_README.md).
+# CUDA-LeNet
+Course final project for ECE 408 FA23 @ UIUC. For original project description, see [_README.md](_README.md).
 
 ## Optimization Techniques
 For a more comprehensive discussion, see [report.pdf](report.pdf).
@@ -17,7 +17,7 @@ This optimization works because nVidia designed some dedicated hardware for matr
 The reason why this trick works is explained in the report. But the basic idea is that in this case the kernel is not compute-bounded by floating point operations, but rather integer operations used to calculate the indices (not common, but still possible). So reusing the indices can dramatically improve the performance.
 
 ### 5. Multiple Kernel Implementations for Different Layer Sizes
-This optimization is dependent on the fact that Layer 1 has a small `M` size (`M=4`), this is much smaller than the size used by Tensor Cores (16*16*16). Luckily, Tensor Cores also support a smaller size in fist dimension: 8*32*16. So we can use this size for Layer 1 and use the original size for other layers.
+This optimization is dependent on the fact that Layer 1 has a small `M` size (`M=4`), this is much smaller than the size used by Tensor Cores (16\*16\*16). Luckily, Tensor Cores also support a smaller size in fist dimension: 8\*32\*16. So we can use this size for Layer 1 and use the original size for other layers.
 
 ## Performance Results
 
